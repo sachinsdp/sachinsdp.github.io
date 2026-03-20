@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Native Windows Build of OpenMC</title>
+<style>
+body{font-family:Arial,Helvetica,sans-serif;margin:0;background:#f4f6f8;color:#333}
+header{background:#0b3d91;color:white;padding:40px 20px;text-align:center}
+header h1{margin:0;font-size:36px}
+header p{margin-top:10px;font-size:18px}
+.container{max-width:1000px;margin:auto;padding:30px}
+.section{margin-bottom:40px}
+h2{color:#0b3d91;border-bottom:2px solid #e0e0e0;padding-bottom:6px}
+.code{background:#111;color:#0f0;padding:15px;border-radius:6px;font-family:monospace;overflow:auto}
+.download{background:#0b3d91;color:white;padding:20px;border-radius:8px;text-align:center}
+.download a{display:inline-block;margin-top:10px;padding:12px 20px;background:white;color:#0b3d91;text-decoration:none;border-radius:6px;font-weight:bold}
+.footer{text-align:center;padding:30px;background:#111;color:#bbb;font-size:14px}
+.badge{display:inline-block;background:#e8eefc;color:#0b3d91;padding:6px 12px;border-radius:20px;margin:4px;font-size:14px}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Native Windows Compilation of OpenMC</h1>
+<p>Running the OpenMC Monte Carlo Neutron Transport Code Natively on Windows</p>
+</header>
+
+<div class="container">
+
+<div class="section">
+<h2>Overview</h2>
+<p>
+OpenMC is a powerful Monte Carlo particle transport code widely used in reactor physics and radiation transport research. Traditionally, OpenMC is primarily developed and tested in Linux environments. This project demonstrates how OpenMC can be compiled and executed natively on Microsoft Windows systems while maintaining compatibility with the existing Python API and nuclear data libraries.
+</p>
+<p>
+The goal of this work is to make OpenMC easier to use for students, researchers, and engineers who primarily work in Windows environments.
+</p>
+</div>
+
+<div class="section">
+<h2>Key Features of the Windows Build</h2>
+
+<div class="badge">Native Windows Executable</div>
+<div class="badge">Compatible with Python API</div>
+<div class="badge">HDF5 Data Support</div>
+<div class="badge">Portable Distribution</div>
+<div class="badge">OpenMP Multithreading</div>
+
+<p>
+The Windows build provides a native executable that can run directly on Windows 10 and Windows 11 systems without requiring Linux emulation or virtual machines.
+</p>
+</div>
+
+<div class="section">
+<h2>Build Environment</h2>
+<p>The compilation was performed using the following setup:</p>
+
+<div class="code">
+Operating System: Windows 10/11
+Build Environment: MSYS2 / MinGW64
+Compiler: GCC (MinGW)
+Build System: CMake
+OpenMC Branch: master
+</div>
+
+<p>
+The build system ensures compatibility with the OpenMC Python module so that simulations can be executed either directly from the command line or through Python scripts.
+</p>
+</div>
+
+<div class="section">
+<h2>Compilation Steps</h2>
+
+<div class="code">
+cmake .. -G "MinGW Makefiles" \
+-DCMAKE_BUILD_TYPE=Release \
+-DBUILD_SHARED_LIBS=OFF \
+-DOPENMC_USE_MPI=OFF
+
+mingw32-make -j8
+</div>
+
+<p>
+After compilation, the executable and required runtime libraries were packaged together to create a portable Windows distribution.
+</p>
+</div>
+
+<div class="section">
+<h2>Portable Distribution</h2>
+
+<p>
+The compiled package is distributed as a portable folder containing:
+</p>
+
+<div class="code">
+openmc-windows/
+
+  bin/
+    openmc.exe
+    required DLL libraries
+
+  nuclear_data/
+    cross_sections.xml
+    *.h5 nuclear data files
+
+  examples/
+</div>
+
+<p>
+All required runtime libraries are included so the executable can run on any compatible Windows system without additional installations.
+</p>
+</div>
+
+<div class="section">
+<h2>Python Integration</h2>
+
+<p>
+The OpenMC Python API can still be installed using pip, allowing users to generate XML input files, run simulations, and analyze results exactly as done on Linux systems.
+</p>
+
+<div class="code">
+pip install openmc
+</div>
+
+</div>
+
+<div class="section download">
+<h2 style="color:#ffffff;">Download</h2>
+<p>The Windows build and example files are available on GitHub.</p>
+
+<a href="#">Download from GitHub</a>
+
+<p style="margin-top:10px">This is a test version of OpenMC Native build, Hence the running parameters are restricted.</p>
+</div>
+
+<div class="section full-version">
+<h2>What about the Full Version</h2>
+<p>
+The full version is under testing and will be made available on request. 
+<br><strong style="margin-top:10px; display:inline-block;">Email: iamsachinshet@gmail.com</strong><br>
+</p>
+<ul style="list-style:none;padding:0;display:flex;justify-content:center;gap:16px;">
+    <li>
+        <a href="https://www.buymeacoffee.com/sachinshet" target="_blank" class="full-version-btn">Buy Me a Coffee</a>
+    </li>
+    <li>
+        <a href="https://paypal.me/sachinshet" target="_blank" class="full-version-btn">Support via PayPal</a>
+    </li>
+</ul>
+<p>
+Your support helps maintain and improve the Windows build of OpenMC. Thank you!
+</p>
+</div>
+<style>
+.full-version {
+    background: #e0f7fa;
+    color: #006064;
+    padding: 24px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 40px;
+    box-shadow: 0 2px 8px rgba(0,96,100,0.08);
+}
+.full-version-btn {
+    display:inline-block;
+    margin:10px 8px;
+    padding:14px 24px;
+    background:#006064;
+    color:#e0f7fa;
+    text-decoration:none;
+    border-radius:8px;
+    font-weight:bold;
+    transition:background 0.2s;
+}
+.full-version-btn:hover {
+    background:#00838f;
+    color:#ffffff;
+}
+</style>
+
+<div class="section installing">
+    
+</div>
+
+<div class="section">
+<h2>Future Work</h2>
+<ul>
+<li>Automated Windows build pipeline</li>
+<li>Graphical user interface for running simulations</li>
+<li>Installer package for easier distribution</li>
+<li>Benchmark validation on Windows systems</li>
+</ul>
+</div>
+
+</div>
+
+<div class="footer">
+<p>Author: Sachin Shet</p>
+<p>Project: Native Windows OpenMC Build</p>
+<p>Open-source distribution via GitHub</p>
+<img src="https://visitor-badge.laobi.icu/badge?page_id=mywebsite0">
+</div>
+
+</body>
+</html>
